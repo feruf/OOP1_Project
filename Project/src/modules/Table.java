@@ -7,14 +7,24 @@ import java.util.Scanner;
 
 public class Table {
     private List<Column> columnList=new ArrayList<>();
-
-
     private String name;
     private String fileName;
+
+
+    public Table(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
 
     public int lastFreeIndex(){
         return columnList.size();
     }
+
+
 
     public void addColumn(String columnName,DataType dataType){
         columnList.add(new Column(columnName,lastFreeIndex(),dataType));
@@ -28,18 +38,6 @@ public class Table {
         }
     }
 
-
-
-    public Table(String name) {
-        this.name = name;
-    }
-
-
-
-    public String getName() {
-        return name;
-    }
-
     public boolean columnNameExists(String columnName){
         for(Column tableColumn:columnList){
             if(tableColumn.getColumnName()==columnName){
@@ -48,6 +46,8 @@ public class Table {
         }
         return false;
     }
+
+
 
     @Override
     public String toString() {

@@ -20,6 +20,21 @@ public class Catalogue {
     private List<Table> list=new ArrayList<>();
 
 
+    public void openNewFile(String fileName){
+        catalogueInstance=new Catalogue(fileName);
+    }
+
+
+    public void saveCatalogue() throws IOException {
+        FileWriter fileWriter=new FileWriter("C:\\Users\\feray\\OneDrive\\Documents\\GitHub\\OOP1_Project\\Project\\src\\files\\"+fileName+".txt");
+        for(Table table:list){
+                fileWriter.write(table.toString());
+                fileWriter.write("\n");
+            }
+        fileWriter.close();
+    }
+
+
     public void addTable(Table table){
         list.add(table);
     }

@@ -1,1 +1,0 @@
-Table 'Who' CollumnNumber = 0 INT
