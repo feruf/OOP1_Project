@@ -1,6 +1,5 @@
 package modules;
 
-import operations.Close;
 import operations.Exit;
 import operations.Help;
 import operations.Save;
@@ -32,8 +31,8 @@ public class MethodCaller {
                 break;
 
             case "close":
+                return false;
 
-                break;
             default:
                 break;
         }

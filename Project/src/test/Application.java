@@ -1,9 +1,7 @@
 package test;
 
-import modules.Catalogue;
-import modules.DataType;
-import modules.MethodCaller;
-import modules.Table;
+import modules.*;
+import operations.Open;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -23,12 +21,32 @@ public class Application {
 
 
 
-        while(true){
-            Scanner scanner=new Scanner(System.in);
+        boolean check=true;
+        Scanner scanner=new Scanner(System.in);
+        while(check){
             String method=scanner.nextLine();
-            String arr[]=method.split(" ");
-            MethodCaller.getInstance().callMethod(arr[0]);
+            String[] arr =method.split(" ");
+            check=MethodCaller.getInstance().callMethod(arr[0]);
         }
+
+        check=true;
+        while(check){
+            String method=scanner.nextLine();
+            String[] arr =method.split(" ");
+
+            if(arr[0]=="open"){
+                StringBuilder stringBuilder=new StringBuilder();
+                for(int i=1;i<arr.length;i++){
+                    stringBuilder.append(arr[i]);
+                }
+                String path=stringBuilder.toString();
+                Open.open(path);
+            }
+
+
+            check= OpenExitMethod.getInstance().callMethod(arr[0]);
+        }
+        System.out.println("GG");
 
 
 
