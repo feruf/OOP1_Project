@@ -2,11 +2,21 @@ package modules;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Catalogue {
+    private static Catalogue catalogueInstance=new Catalogue("CatalogueFile");
+
+    private String fileName;
+
+    private Catalogue(String fileName){
+        this.fileName=fileName;
+    }
+
+    public static Catalogue getInstance(){
+            return catalogueInstance;
+    }
+
     private List<Table> list=new ArrayList<>();
 
 
@@ -24,6 +34,20 @@ public class Catalogue {
         return false;
     }
 
+    public boolean insertRow(String tableName){
+        if(tableNameExists(tableName)){
+            return false;
+        }else{
+            for(Table table:list){
+                if(table.getName().equals(tableName)){
+                    table.addRows();
+                }
+            }
+        }
+
+
+        return true;
+    }
 
     public boolean addColumn(String tableName, String columnName,DataType dataType) {
         if (!tableNameExists(tableName)) {
@@ -40,12 +64,13 @@ public class Catalogue {
         return true;
     }
 
-    public void export(String tableName,String fileName) throws IOException {
+    public void export(String tableName) throws IOException {           //zapisva tablicata v kataloga
         if(tableNameExists(tableName)){
             FileWriter fileWriter=new FileWriter("C:\\Users\\feray\\OneDrive\\Documents\\GitHub\\OOP1_Project\\Project\\src\\files\\"+fileName+".txt");
             for(Table table:list){
                 if(table.getName()==tableName){
                     fileWriter.write(table.toString());
+                    fileWriter.write("\n");
                 }
             }
             fileWriter.close();
