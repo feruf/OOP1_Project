@@ -1,8 +1,7 @@
 package modules;
 
-import operations.Exit;
-import operations.Help;
-import operations.Save;
+import exceptions.ArrOutOfBoundsException;
+import operations.*;
 
 import java.io.IOException;
 
@@ -16,7 +15,7 @@ public class MethodCaller {
         return methodCallerInstance;
     }
 
-    public boolean callMethod(String method) throws IOException {
+    public boolean callMethod(String method) throws IOException, ArrOutOfBoundsException {
         switch(method){
             case "exit":
                 Exit.terminate();
@@ -31,9 +30,12 @@ public class MethodCaller {
                 break;
 
             case "close":
+                Close.close();
                 return false;
 
+
             default:
+                Invalid.invalidOperation();
                 break;
         }
         return true;

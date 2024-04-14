@@ -5,12 +5,17 @@ import java.io.IOException;
 import java.util.*;
 
 public class Catalogue {
-    private static Catalogue catalogueInstance=new Catalogue("CatalogueFile");
+    private static Catalogue catalogueInstance=new Catalogue("CatalogueFile.txt");
 
     private String fileName;
+    private String filePath="C:\\Users\\feray\\OneDrive\\Documents\\GitHub\\OOP1_Project\\Project\\src\\files\\";
 
     private Catalogue(String fileName){
         this.fileName=fileName;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
 
     public static Catalogue getInstance(){
@@ -26,7 +31,7 @@ public class Catalogue {
 
 
     public void saveCatalogue() throws IOException {
-        FileWriter fileWriter=new FileWriter("C:\\Users\\feray\\OneDrive\\Documents\\GitHub\\OOP1_Project\\Project\\src\\files\\"+fileName+".txt");
+        FileWriter fileWriter=new FileWriter(filePath+fileName);
         for(Table table:list){
                 fileWriter.write(table.toString());
                 fileWriter.write("\n");
@@ -81,7 +86,7 @@ public class Catalogue {
 
     public void export(String tableName) throws IOException {           //zapisva tablicata v kataloga
         if(tableNameExists(tableName)){
-            FileWriter fileWriter=new FileWriter("C:\\Users\\feray\\OneDrive\\Documents\\GitHub\\OOP1_Project\\Project\\src\\files\\"+fileName+".txt");
+            FileWriter fileWriter=new FileWriter(filePath+fileName);
             for(Table table:list){
                 if(table.getName()==tableName){
                     fileWriter.write(table.toString());
