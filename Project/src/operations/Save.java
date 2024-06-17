@@ -1,11 +1,16 @@
 package operations;
 
-import modules.Catalogue;
+import contracts.Executable;
+import modules.catalogue.Catalogue;
+import modules.Table;
+import modules.catalogue.CatalogueData;
 
+import java.io.FileWriter;
 import java.io.IOException;
 
-public class Save {
-    public static void save() throws IOException {
-        Catalogue.getInstance().saveCatalogue();
+public class Save implements Executable {
+    @Override
+    public void execute() {
+        CatalogueData.getInstance().write();
     }
 }

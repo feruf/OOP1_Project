@@ -6,6 +6,8 @@ public enum DataType {
     _STRING,
     _NULL;
 
+
+
     @Override
     public String toString() {
         if(this==_INT){

@@ -1,9 +1,11 @@
 package operations;
 
-public class Exit {
-    public static void terminate(){
+import contracts.Executable;
+
+public class Exit implements Executable {
+    @Override
+    public void execute(){
         System.out.println("Exiting the program...\n");
         System.exit(0);
-
     }
 }

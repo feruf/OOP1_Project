@@ -1,7 +1,10 @@
 package operations;
 
-public class Help {
-    public static void help(){
-        System.out.println("metod1\nmetod2");
+import contracts.Executable;
+
+public class Help implements Executable {
+    @Override
+    public void execute() {
+        System.out.println(Command.OPEN.getSyntax()+" "+Command.OPEN.getDescription());
     }
 }

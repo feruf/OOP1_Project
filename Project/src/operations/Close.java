@@ -1,29 +1,17 @@
 package operations;
 
+import contracts.Executable;
 import exceptions.ArrOutOfBoundsException;
+import modules.catalogue.Catalogue;
+import modules.catalogue.CatalogueData;
 
-import java.util.Scanner;
+public class Close implements Executable {
 
-public class Close {
-    public static void close() throws ArrOutOfBoundsException {
-        String fName;
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Choose either open or exit: ");
-        String method = scanner.nextLine();
-        String[] arr = method.split(" ");
-        switch(arr[0]){
-            case "exit":
-                Exit.terminate();
-                break;
-
-            case "open":
-                Open.open(arr[1]);
-                break;
-
-            default : {
-                Invalid.invalidOperation();
-                break;
-            }
-        }
+    @Override
+    public void execute() {
+        Catalogue.getInstance().setList(null);
+        System.out.println("Successfully closed file "+CatalogueData.getInstance().getFile().getName());
+        CatalogueData.getInstance().setFile(null);
     }
 }
+
