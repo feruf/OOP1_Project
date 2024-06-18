@@ -16,5 +16,6 @@ public class SaveAs implements Executable {
     public void execute() {
         File temp=new File(argument);
         CatalogueData.getInstance().write(temp);
+        System.out.println("Successfully saved the catalogue in file "+CatalogueData.getInstance().getFile().getName());
     }
 }

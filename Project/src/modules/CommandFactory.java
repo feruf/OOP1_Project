@@ -12,9 +12,9 @@ public class CommandFactory {
             case CLOSE -> new Close();
             case EXIT -> new Exit();
             case EXPORT_TABLE -> null;
-            case HELP -> null;
+            case HELP -> new Help();
             case SAVE -> new Save();
-            case SAVE_AS -> null;
+            case SAVE_AS -> new SaveAs(argument);
         };
     }
 
