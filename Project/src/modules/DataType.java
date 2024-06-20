@@ -1,23 +1,18 @@
 package modules;
 
 public enum DataType {
-    _INT,
-    _DOUBLE,
-    _STRING,
-    _NULL;
+    _INT("int"),
+    _DOUBLE("double"),
+    _STRING("string"),
+    _NULL("null");
 
+    private String type;
 
+    DataType(String type) {
+        this.type = type;
+    }
 
-    @Override
-    public String toString() {
-        if(this==_INT){
-            return "INT";
-        }else if(this==_DOUBLE){
-            return "DOUBLE";
-        }else if(this==_STRING){
-            return "STRING";
-        }else{
-            return "NULL";
-        }
+    public String getType() {
+        return type;
     }
 }

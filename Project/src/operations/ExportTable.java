@@ -1,7 +1,7 @@
 package operations;
 
 import modules.catalogue.Catalogue;
-import modules.Table;
+import modules.table.Table;
 
 import java.io.FileWriter;
 import java.io.IOException;

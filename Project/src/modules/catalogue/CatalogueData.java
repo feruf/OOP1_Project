@@ -41,14 +41,14 @@ public class CatalogueData {
         reader.read(file);
     }
 
-    public void write(){
+    public void write() {
         if(file==null){
             throw new RuntimeException("No file loaded");
         }
         writer.write(this.file);
     }
 
-    public void write(File file1){
+    public void write(File file1) {
         if(file1==null){
             throw new RuntimeException("No file loaded");
         }

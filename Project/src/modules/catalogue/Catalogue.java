@@ -1,7 +1,7 @@
 package modules.catalogue;
 
 import modules.DataType;
-import modules.Table;
+import modules.table.Table;
 
 import java.util.*;
 
@@ -40,35 +40,13 @@ public class Catalogue {
 //        fileWriter.close();
 //    }
 
-
-
-
-
-    private boolean tableNameExists(String name){
+    public boolean tableNameExists(String name){
         for(Table table:list){
             if(table.getName().equals(name)){
                 return true;
             }
         }
         return false;
-    }
-
-
-
-
-    public boolean insertRow(String tableName){
-        if(tableNameExists(tableName)){
-            return false;
-        }else{
-            for(Table table:list){
-                if(table.getName().equals(tableName)){
-                    table.addRows();
-                }
-            }
-        }
-
-
-        return true;
     }
 
     public boolean addColumn(String tableName, String columnName, DataType dataType) {

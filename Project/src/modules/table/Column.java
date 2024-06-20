@@ -1,14 +1,17 @@
-package modules;
+package modules.table;
 
-import java.util.ArrayList;
-import java.util.List;
+import modules.Data;
+import modules.DataType;
+
+
+import java.util.*;
 
 public class Column {
-    private int columnID;
-    private DataType dataType;
-    private String columnName;
+    private final int columnID;
+    private final DataType dataType;
+    private final String columnName;
 
-    private List<TableRow> tableRowList=new ArrayList<>();
+    private Map<TableRow,DataType> tableRowMap=new HashMap<>();
 
     private String parentTableName;
 
@@ -19,9 +22,12 @@ public class Column {
     }
 
     private Data data;
-
     public Data getData() {
         return data;
+    }
+
+    public DataType getDataType() {
+        return dataType;
     }
 
     public int getColumnID() {
@@ -34,6 +40,10 @@ public class Column {
 
     @Override
     public String toString() {
-        return "CollumnNumber = " + columnID + " "+dataType.toString();
+        return "ColumnNumber = " + columnID + " "+dataType.toString();
+    }
+
+    public Map<TableRow, DataType> getTableRowMap() {
+        return tableRowMap;
     }
 }
