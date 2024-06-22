@@ -21,11 +21,6 @@ public class Column {
         this.dataType = dataType;
     }
 
-    private Data data;
-    public Data getData() {
-        return data;
-    }
-
     public DataType getDataType() {
         return dataType;
     }

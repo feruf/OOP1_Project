@@ -19,10 +19,11 @@ public class CatalogueWriter extends CatalogueFile implements Writable {
         try {
             FileWriter fileWriter=new FileWriter(file);
             for(Table table:Catalogue.getInstance().getList()){
-                fileWriter.append("tableFile:")
+                fileWriter.append("tableFile=")
                           .append(table.getTableFile().getPath())
                           .append('\n');
             }
+            fileWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

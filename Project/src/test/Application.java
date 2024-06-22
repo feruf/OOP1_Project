@@ -2,6 +2,7 @@ package test;
 
 import exceptions.ArrOutOfBoundsException;
 import modules.*;
+import operations.CommandInvoker;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -21,19 +22,19 @@ public class Application {
 
 
 
-        boolean check=true;
-        Scanner scanner=new Scanner(System.in);
-        BooleanWrapper flag=new BooleanWrapper(true);
-        while(true){
-            System.out.println("Enter an operation to be called: ");
-            String method = scanner.nextLine();
-            String[] arr  = method.split(" ");
-
-            if(arr.length>1){
-                MethodCaller.getInstance().callMethod(arr[0],arr[1],flag);
-            }
-            MethodCaller.getInstance().callMethod(arr[0],null,flag);
-        }
+//        boolean check=true;
+//        Scanner scanner=new Scanner(System.in);
+//        BooleanWrapper flag=new BooleanWrapper(true);
+//        while(true){
+//            System.out.println("Enter an operation to be called: ");
+//            String method = scanner.nextLine();
+//            String[] arr  = method.split(" ");
+//
+//            if(arr.length>1){
+//                MethodCaller.getInstance().callMethod(arr[0],arr[1],flag);
+//            }
+//            MethodCaller.getInstance().callMethod(arr[0],null,flag);
+//        }
 
         /*check=true;
         while(check){
@@ -56,5 +57,12 @@ public class Application {
 
             */
 
+        System.out.println("Feru's OOP1 database project (c) ALL RIGHTS RESERVED\n");
+        do {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("-->");
+            String input = scanner.nextLine();
+            CommandInvoker.getInstance().run(input);
+        } while (true);
     }
 }

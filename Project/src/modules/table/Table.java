@@ -41,23 +41,44 @@ public class Table {
         return columnList.get(0).getTableRowMap().size();
     }
 
+    public String getDefaultData(DataType type) {
+        return switch(type){
+            case _STRING -> "";
+            case _DOUBLE -> "0.0";
+            case _INT -> "0";
+            case _NULL -> "null";
+        };
+    }
+
     public void addColumn(String columnName, DataType dataType){
         columnList.add(new Column(columnName,lastFreeColumnIndex(),dataType));
-        for(Map.Entry<TableRow,DataType> tableRow:columnList.getLast().getTableRowMap().entrySet()){
-            switch(tableRow.getValue()){
-                case _STRING -> tableRow.getKey().setData("");
-                case _DOUBLE -> tableRow.getKey().setData("0.0");
-                case _INT -> tableRow.getKey().setData("0");
-                case _NULL -> tableRow.getKey().setData("null");
-            }
+        for (int i = 0; i < lastFreeRowIndex(); i++) {
+            columnList.getLast().getTableRowMap().put(new TableRow(i, getDefaultData(dataType)), dataType);
+        }
+//        for(Map.Entry<TableRow,DataType> tableRow:columnList.getLast().getTableRowMap().entrySet()){
+//            switch(tableRow.getValue()){
+//                case _STRING -> tableRow.getKey().setData("");
+//                case _DOUBLE -> tableRow.getKey().setData("0.0");
+//                case _INT -> tableRow.getKey().setData("0");
+//                case _NULL -> tableRow.getKey().setData("null");
+//            }
+//        }
+    }
+
+    public void fillColumn(Integer columnId, List<String> data) {
+        Column column = columnList.get(columnId);
+        int row = 0;
+        for (String currentData : data) {
+            column.getTableRowMap().put(new TableRow(row++, currentData), column.getDataType());
         }
     }
 
     public void addRow(List<String> data) {
         if (columnList.size() != data.size()) {
-            throw new RuntimeException("...");
+            throw new RuntimeException("Invalid parameters!");
         }
 
+        int lastRow = lastFreeRowIndex();
         for (int i = 0; i < columnList.size(); i++) {
             Column currentColumn = columnList.get(i);
             String currentData = data.get(i);
@@ -66,7 +87,7 @@ public class Table {
                     try {
                         Integer temp = Integer.parseInt(currentData);
                     } catch (NumberFormatException ex) {
-                        System.out.println("invalid");
+                        System.out.println("Invalid parameters!");
                         return;
                     }
                 }
@@ -74,23 +95,23 @@ public class Table {
                     try {
                         Double temp = Double.parseDouble(currentData);
                     } catch (NumberFormatException ex) {
-                        System.out.println("invalid");
+                        System.out.println("Invalid parameters!");
                         return;
                     }
                 }
                 case _STRING -> {
                     if (!currentData.startsWith("\'") && !currentData.endsWith("\'")) {
-                        throw new RuntimeException(",,,");
+                        throw new RuntimeException("Invalid parameter format");
                     }
                     currentData = currentData.substring(1, currentData.length() - 1);
                 }
                 case _NULL -> {
                     if (!currentData.equalsIgnoreCase("null")) {
-                        throw new RuntimeException("invalid");
+                        throw new RuntimeException("Invalid parameters!");
                     }
                 }
             }
-            currentColumn.getTableRowMap().put(new TableRow(lastFreeRowIndex(), currentData), currentColumn.getDataType());
+            currentColumn.getTableRowMap().put(new TableRow(lastRow, currentData), currentColumn.getDataType());
         }
     }
 

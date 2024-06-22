@@ -3,7 +3,7 @@ package modules.table;
 import java.util.Objects;
 
 public class TableRow {
-    private int rowID;
+    private final int rowID;
     private String data;
 
     public TableRow(int rowID, String data) {

@@ -15,4 +15,13 @@ public enum DataType {
     public String getType() {
         return type;
     }
+
+    public static DataType getDataType(String type) {
+        for (DataType dataType : DataType.values()) {
+            if (dataType.type.equalsIgnoreCase(type)) {
+                return dataType;
+            }
+        }
+        throw new RuntimeException("ne e nameren takuv tip");
+    }
 }

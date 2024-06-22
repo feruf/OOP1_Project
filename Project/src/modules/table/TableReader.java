@@ -26,7 +26,7 @@ public class TableReader implements Readable {
                 switch (args.get(0)) {
                     case "tableName" -> {
                         if (Catalogue.getInstance().tableNameExists(args.get(1))) {
-                            throw new RuntimeException("nevaliden ime tam neshto da");
+                            throw new RuntimeException("Table name already exists");
                         }
                         table = new Table(args.get(1), file);
                     }
@@ -47,16 +47,18 @@ public class TableReader implements Readable {
                         rowData.add(args.get(1));
                     }
                     case "=" -> {
-                        tableMap.put(column, rowData);
+                        tableMap.put(column, new ArrayList<>(rowData));
+                        rowData.clear();
                     }
                 }
-
-                for (Map.Entry<Integer, List<String>> entry : tableMap.entrySet()) {
-                    table.addRow(entry.getValue());
-                }
-
-                Catalogue.getInstance().addTable(table);
             }
+            for (Map.Entry<Integer, List<String>> entry : tableMap.entrySet()) {
+                table.fillColumn(entry.getKey(), entry.getValue());
+            }
+
+            Catalogue.getInstance().addTable(table);
+
+            reader.close();
         } catch (FileNotFoundException e) {
             System.out.println("file not found");
         } catch (IOException e) {

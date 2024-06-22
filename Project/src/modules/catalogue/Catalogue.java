@@ -66,6 +66,14 @@ public class Catalogue {
 
 
 
+    public Table getTableByName(String name){
+        for (Table table:list) {
+            if (table.getName().equals(name)) {
+                return table;
+            }
+        }
+        throw new RuntimeException("Table doesn't exist!");
+    }
 
 //    public void export(String tableName) throws IOException {       //zapisva tablicata v kataloga
 //

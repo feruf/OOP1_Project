@@ -46,6 +46,7 @@ public class TableWriter implements Writable {
 
                 fileWriter.append("=\n");
             }
+            fileWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

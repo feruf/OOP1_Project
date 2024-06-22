@@ -5,6 +5,8 @@ import contracts.Executable;
 public class Help implements Executable {
     @Override
     public void execute() {
-        System.out.println(Command.OPEN.getSyntax()+" "+Command.OPEN.getDescription());
+        for (Command command : Command.values()) {
+            System.out.printf("%-20s%s\n", command.getSyntax().toUpperCase(), command.getDescription());
+        }
     }
 }

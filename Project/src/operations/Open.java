@@ -6,18 +6,19 @@ import modules.catalogue.CatalogueData;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public class Open implements Executable {
-    private String argument;
+    private final List<String> arguments;
 
-    public Open(String argument) {
-        this.argument = argument;
+    public Open(List<String> arguments) {
+        this.arguments = arguments;
     }
 
 
     @Override
     public void execute() {
-        File temp=new File(argument);
+        File temp = new File(arguments.get(0));
 
         if(temp.exists()){
             CatalogueData.getInstance().read(temp);
@@ -25,6 +26,7 @@ public class Open implements Executable {
         else {
             try {
                 temp.createNewFile();
+                CatalogueData.getInstance().setFile(temp);
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
