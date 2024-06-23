@@ -1,1 +1,0 @@
-tableFile=C:\Users\feray\OneDrive\Documents\GitHub\OOP1_Project\Project\src\files\FeruTest.txt

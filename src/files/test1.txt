@@ -1,0 +1,11 @@
+tableName:test
+columnName:columnFirst
+column:0
+dataType:string
+row:1
+rowData:"firsttest"
+row:2
+rowData:"proben string"
+row:0
+rowData:"first test probvame"
+=

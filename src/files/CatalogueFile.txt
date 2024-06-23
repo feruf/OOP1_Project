@@ -1,0 +1,2 @@
+tableFile=.\src\files\FeruTest.txt
+tableFile=.\src\files\feru.txt

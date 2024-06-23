@@ -1,0 +1,9 @@
+tableName:FeruQkiq
+columnName:firstColumn
+column:0
+dataType:int
+row:1
+rowData:+12
+row:0
+rowData:1
+=
